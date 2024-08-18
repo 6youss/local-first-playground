@@ -6,10 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { NotesService } from './notes.service';
+import { FindAllNotesQuery } from './dto/find-all-notes-query.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -17,12 +19,13 @@ export class NotesController {
 
   @Post()
   create(@Body() createNoteDto: CreateNoteDto) {
+    
     return this.notesService.create(createNoteDto);
   }
 
   @Get()
-  findAll() {
-    return this.notesService.findAll();
+  findAll(@Query() query:FindAllNotesQuery) {
+    return this.notesService.findAll(query);
   }
 
   @Get(':id')

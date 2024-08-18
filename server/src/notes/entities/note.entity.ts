@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('note')
-export class Note {
+@Entity('notes')
+export class NoteEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,4 +10,7 @@ export class Note {
 
   @Column()
   content: string;
+
+  @Column({nullable: true})
+  date: Date;
 }
