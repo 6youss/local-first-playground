@@ -7,6 +7,38 @@ import { Textarea } from "@/components/ui/textarea";
 
 function App() {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  function handleCancel() {
+    clearForm();
+  }
+
+  function clearForm() {
+    setTitle("");
+    setContent("");
+  }
+
+  async function handleSave() {
+    try {
+      const res = await fetch("http://localhost:3000/notes", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ title, content }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(json);
+      }
+      alert("created" + JSON.stringify(json));
+      clearForm();
+    } catch (err) {
+      alert(err);
+    }
+  }
+
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -23,13 +55,26 @@ function App() {
               </div>
               <div className="flex flex-col items-start space-y-2">
                 <Label htmlFor="description">Description</Label>
-                <Textarea id="description" className="" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <Textarea id="description" className="" value={content} onChange={(e) => setContent(e.target.value)} />
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline">Cancel</Button>
-            <Button>Save</Button>
+            <Button
+              onClick={() => {
+                handleCancel();
+              }}
+              variant="outline"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleSave();
+              }}
+            >
+              Save
+            </Button>
           </CardFooter>
         </Card>
       </div>
