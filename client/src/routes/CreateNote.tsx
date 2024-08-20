@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
-export function NewNote() {
+export function CreateNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -30,7 +30,7 @@ export function NewNote() {
 
       const json = await res.json();
       if (!res.ok) {
-        throw new Error(json);
+        throw new Error(json.message);
       }
       alert("created" + JSON.stringify(json));
       clearForm();
@@ -41,7 +41,7 @@ export function NewNote() {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen">
         <Card className="w-[500px]">
           <CardHeader>
             <CardTitle>Write a note</CardTitle>
