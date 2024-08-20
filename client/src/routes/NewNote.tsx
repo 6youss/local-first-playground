@@ -1,11 +1,11 @@
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
-function App() {
+export function NewNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -81,5 +81,3 @@ function App() {
     </>
   );
 }
-
-export default App;
