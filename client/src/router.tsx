@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { CreateNote } from "./routes/CreateNote";
 import { Root } from "./routes/Root";
+import { UpdateNote } from "./routes/UpdateNote";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "update-note/:id",
-        element: <CreateNote />,
+        element: <UpdateNote />,
       },
     ],
   },

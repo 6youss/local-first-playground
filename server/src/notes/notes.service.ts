@@ -35,7 +35,7 @@ export class NotesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} note`;
+    return this.notesRepository.findOneBy({ id });
   }
 
   update(id: number, updateNoteDto: UpdateNoteDto) {
